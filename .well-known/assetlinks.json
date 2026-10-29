@@ -4,7 +4,9 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.play.playaura",
-      "sha256_cert_fingerprints": ["SHA256_YAHAN_DAALNA"]
+      "sha256_cert_fingerprints": [
+        "3D:54:71:36:8F:BD:CD:8E:F6:0F:72:B0:C1:FC:C2:7D:37:6E:16:38:A2:21:A4:29:76:89:8F:05:47:3E:43:73"
+      ]
     }
   }
 ]
