@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PlayAura</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 40px 20px; background: #111; color: #fff; }
+    a.btn { display: block; max-width: 320px; margin: 14px auto; padding: 14px; border-radius: 10px; text-decoration: none; font-size: 16px; }
+    .open { background: #e50914; color: #fff; }
+    .play { background: #fff; color: #111; }
+  </style>
+</head>
+<body>
+  <h2>PlayAura me dekho</h2>
+  <a id="open" class="btn open" href="#">App me kholo</a>
+  <a id="play" class="btn play" href="#">App download karo</a>
+
+<script>
+  var PACKAGE = "com.play.playaura";
+  var id = location.pathname.split("/").filter(Boolean).pop() || "";
+  var playUrl = "https://play.google.com/store/apps/details?id=" + PACKAGE;
+  var intentUrl = "intent://" + location.host + "/video/" + id +
+    "#Intent;scheme=https;package=" + PACKAGE +
+    ";S.browser_fallback_url=" + encodeURIComponent(playUrl) + ";end";
+  document.getElementById("open").href = intentUrl;
+  document.getElementById("play").href = playUrl;
+  if (/android/i.test(navigator.userAgent)) { window.location.href = intentUrl; }
+</script>
+</body>
+</html>
