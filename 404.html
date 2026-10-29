@@ -3,29 +3,53 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b12">
   <title>PlayAura</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 40px 20px; background: #111; color: #fff; }
-    a.btn { display: block; max-width: 320px; margin: 14px auto; padding: 14px; border-radius: 10px; text-decoration: none; font-size: 16px; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; padding: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(160deg, #0b0b12, #1a1020); color: #fff;
+    }
+    .card {
+      width: 100%; max-width: 380px; text-align: center;
+      background: #14141c; border: 1px solid #262632;
+      border-radius: 20px; padding: 32px 24px;
+    }
+    .logo {
+      width: 84px; height: 84px; margin: 0 auto 18px; border-radius: 22px;
+      background: #e50914; display: flex; align-items: center; justify-content: center;
+    }
+    .logo svg { width: 44px; height: 44px; fill: #fff; }
+    h1 { font-size: 24px; margin: 0 0 8px; }
+    p { margin: 0 0 24px; color: #a0a0b0; font-size: 15px; line-height: 1.5; }
+    a.btn {
+      display: block; padding: 15px; margin-top: 12px; border-radius: 12px;
+      text-decoration: none; font-size: 16px; font-weight: 600;
+    }
     .open { background: #e50914; color: #fff; }
-    .play { background: #fff; color: #111; }
+    .play { background: #1f1f2b; color: #fff; border: 1px solid #33334a; }
   </style>
 </head>
 <body>
-  <h2>PlayAura me dekho</h2>
-  <a id="open" class="btn open" href="#">App me kholo</a>
-  <a id="play" class="btn play" href="#">App download karo</a>
+  <div class="card">
+    <div class="logo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <h1>PlayAura</h1>
+    <p>Ye video dekhne ke liye PlayAura app me kholo.</p>
+    <a id="open" class="btn open" href="#">App me kholo</a>
+    <a id="play" class="btn play" href="#">App download karo</a>
+  </div>
 
 <script>
   var PACKAGE = "com.play.playaura";
   var id = location.pathname.split("/").filter(Boolean).pop() || "";
-  var playUrl = "https://play.google.com/store/apps/details?id=" + PACKAGE;
-  var intentUrl = "intent://" + location.host + "/video/" + id +
-    "#Intent;scheme=https;package=" + PACKAGE +
-    ";S.browser_fallback_url=" + encodeURIComponent(playUrl) + ";end";
+  var intentUrl = "intent://" + location.host + "/video/" + encodeURIComponent(id) +
+    "#Intent;scheme=https;package=" + PACKAGE + ";end";
   document.getElementById("open").href = intentUrl;
-  document.getElementById("play").href = playUrl;
-  if (/android/i.test(navigator.userAgent)) { window.location.href = intentUrl; }
+  document.getElementById("play").href =
+    "https://play.google.com/store/apps/details?id=" + PACKAGE;
 </script>
 </body>
 </html>
